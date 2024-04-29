@@ -1,0 +1,169 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+/* @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import 'ngx-toastr/toastr';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "~primeicons/primeicons.css";
+@import "node_modules/primeng/resources/themes/lara-light-blue/theme.css";
+@import "node_modules/primeng/resources/primeng.min.css";
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.login_body {
+    background-image: linear-gradient(#f5adad, #001fff);
+}
+
+input.mat-input-element {
+    box-shadow: none !important;
+}
+
+.login_container,
+input.mat-input-element {
+    background-color: #0000 !important;
+}
+
+.login_container .mat-form-field {
+    width: 100%;
+}
+
+.ui-table-wrapper {
+    min-width: 244px;
+    max-height: calc(100vh - 130px);
+    overflow: auto;
+}
+
+.ui-dropdown {
+    min-width: fit-content !important;
+}
+
+.ui-table-wrapper table thead th {
+    background-color: #86d3a9;
+    position: sticky;
+    top: 0;
+    color: #030303;
+}
+
+.ui-table-wrapper table tbody tr:nth-child(even) td {
+    background: #bee4cf !important;
+}
+
+.ui-table-wrapper table .ui-table-tbody tr:nth-child(odd) td {
+    background: #fff !important;
+
+}
+
+p-cellEditor input {
+    width: 100%;
+}
+
+.action_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.main-container {
+    overflow: auto;
+    padding: 15px;
+}
+
+.ui-dropdown-panel .ui-dropdown-list {
+    background-color: beige;
+}
+
+.login_body .mat-mdc-form-field {
+    /* height: 70px !important; */
+    width: 100% !important;
+}
+
+.login_body .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+    height: 50px;
+    box-shadow: none !important;
+}
+
+.mat-mdc-form-field-error-wrapper {
+    color: #ff5252;
+    font-size: 12px;
+    padding: 0 !important;
+}
+
+.login_body .mat-mdc-form-field-infix {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.login_body .mat-mdc-select-value {
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+
+.ui-table-wrapper {
+    min-width: 244px;
+    max-height: calc(100vh - 130px);
+    overflow: auto;
+}
+
+.ui-dropdown {
+    min-width: fit-content !important;
+}
+
+.ui-table-wrapper table thead th {
+    background-color: #86d3a9;
+    position: sticky;
+    top: 0;
+    color: #030303;
+}
+
+.ui-table-wrapper table tbody tr:nth-child(even) td {
+    background: #bee4cf !important;
+}
+
+.ui-table-wrapper table .ui-table-tbody tr:nth-child(odd) td {
+    background: #fff !important;
+
+}
+
+.sidebar {
+    width: 240px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+}
+
+main.center-content {
+    margin-left: 240px;
+}
+
+.btn_action {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.table-wrapper tr.p-rowgroup-header.p-element {
+    background: beige;
+    color: #000;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+@media screen and (max-width:991px) {
+    main.center-content {
+        margin-left: 60px;
+    }
+}

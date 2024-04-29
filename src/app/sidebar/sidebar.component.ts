@@ -1,0 +1,141 @@
+import { Component } from '@angular/core';
+import * as $ from 'jquery';
+
+@Component({
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
+})
+export class SidebarComponent {
+  $: any;
+   mouseover(){
+     if ($(".sidebar").hasClass('sidebar-close')) { 
+      $(".nav-links").width(250)
+    }
+  }
+  mouseleave(){
+    if ($(".sidebar").hasClass('sidebar-close')) { 
+      $(".nav-links").width(60)
+    }
+   }
+
+
+  
+
+  openSidebar: any = true;
+   // openSidebar: boolean = true;
+   
+  menuSidebar = [
+    {
+      link_name: "Admin Dashboard",
+      link: "admin",
+      icon: "../assets/images/masters.png",
+      sub_menu: []
+    },
+    {
+      link_name: "User Dashboard",
+      link: "userdashboard",
+      icon: "../assets/images/dashboard.png",
+      sub_menu: []
+    },
+    {
+      link_name: "Transaction",
+      link: "transaction",
+      icon: "../assets/images/status.png",
+      sub_menu: []
+    },
+    {
+      link_name: "User List",
+      link: "user",
+      icon: "../assets/images/approval.png",
+      sub_menu: []
+    },
+    // {
+    //   link_name: "Scan Document",
+    //   link: "dms/scan",
+    //   icon: "../assets/images/dashboard.png",
+    //   sub_menu: []
+    // },
+    //  {
+    //   link_name: "Approval",
+    //   link: null,
+    //   icon: "../assets/images/approval.png",
+    //   sub_menu: []
+    // }, {
+    //   link_name: "Status",
+    //   link: "status",
+    //   icon: "../assets/images/status.png",
+    //   sub_menu: []
+    // }, {
+    //   link_name: "Masters",
+    //   link: null,
+    //   icon: "../assets/images/masters.png",
+    //   sub_menu: [
+    //     {
+    //       link_name: "User Management",
+    //       link: null,
+    //     }, {
+    //       link_name: "Role Management",
+    //       link: null,
+    //     }, {
+    //       link_name: "Account Type",
+    //       link: null,
+    //     },
+    //     {
+    //       link_name: "Designation",
+    //       link: null,
+    //     },
+    //     {
+    //       link_name: "Activity Type",
+    //       link: null,
+    //     },
+    //   ]
+    // },  {
+    //   link_name: "Reports",
+    //   link: null,
+    //   icon: "../assets/images/reports.png",
+    //   sub_menu: []
+    // }
+  ]
+  ngOnInit() {
+
+
+
+    $( window ).on( "resize", function() {
+      let resize_width:any=$( window ).width();
+      if (resize_width < 991) {
+        $(".sidebar").addClass("sidebar-close");
+        $("body").addClass("fullcontent");
+      } else {
+        $(".sidebar").removeClass("sidebar-close");
+        $("body").removeClass("fullcontent");
+      }
+    } );
+  }
+
+  showSubmenu(itemEl: HTMLElement) {
+    itemEl.classList.toggle("showMenu");
+  }
+
+
+  
+  changemaincon_short = () => {
+    $(".headerbar_class").removeClass("headerbar_full");
+    $(".headerbar_class").addClass("headerbar");
+
+    $(".main-panel_class").removeClass("main-panel_full");
+    $(".main-panel_class").addClass("main-panel");
+  }
+
+
+
+  changemaincon_full = () => {
+    alert("TEST");
+    $(".headerbar_class").removeClass("headerbar");
+    $(".headerbar_class").addClass("headerbar_full");
+
+    $(".main-panel_class").removeClass("main-panel");
+    $(".main-panel_class").addClass("main-panel_full");
+  }
+
+}

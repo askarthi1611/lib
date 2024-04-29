@@ -1,0 +1,16 @@
+<div class="headerbar_class sidebar" [class.sidebar-close]="!openSidebar">
+    <div class="logo-brand">
+      <div class="logo_big"><img src="../assets/images/abhyudaya_logo.png"></div>
+      <div class="logo_small"><img src="../assets/images/abhyudaya_logo_small.png"></div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li *ngFor="let item of menuSidebar" #itemEl (mouseleave)="mouseleave()" (mouseover)="mouseover()">
+        <div  class="dropdown-title">
+          <a routerLinkActive="active" [routerLink]="[item.link]">
+                        <img src="{{item.icon}}">
+            <span class="link_name">{{item.link_name }}</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>

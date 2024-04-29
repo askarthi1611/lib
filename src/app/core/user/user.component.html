@@ -1,0 +1,31 @@
+<div class="main-container">
+    <p-table class="ui-table-wrapper" [value]="data" dataKey="empcode" editMode="row" dataKey="book_id" #dt1 [rows]="5"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 20]" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="['username','role','dob']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="search" (input)="dt1.filterGlobal(search($event.target), 'contains')"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 40px;">#</th>
+                <th style="min-width: 100px;">User Name</th>
+                <th style="width: 180px;">Role</th>
+                <th style="width: 180px;">DOB</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-ri="rowIndex">
+            <tr>
+                <td>{{ri+1}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.dob}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

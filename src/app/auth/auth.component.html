@@ -1,0 +1,109 @@
+<div *ngIf="isLoading | async" class="overlay">
+    <img src="../../../assets/images/loader.gif" alt="" class="spinner">
+ </div>
+<div class="login_container" *ngIf="signin">
+    <div class="row login_pos">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="login_panel">
+                <div class="login_details">
+                    <div class="login_header">Login</div>
+                    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+                        <div>
+                            <div class="login_username ">
+                                <div class="themeinput">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Username" class="form-control" (keydown.space)="$event.preventDefault()" formControlName="userName" required>
+                                        <mat-error>{{getUserNameErrorMessage()}}</mat-error>
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+                            <div class="login_password mt-3">
+                                <div class="themeinput" style="position:relative">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input #loginPassword matInput type="password" placeholder="Password" [type]='passwd_type'
+                                            class="form-control" formControlName="password" required (keydown.space)="$event.preventDefault()" />
+                                        <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+                                    </mat-form-field>
+                                    <span class="pwd_icon"> <img style="width: 15px;" (click)="password_view(loginPassword,$event)"
+                                            [src]="passwd_img" alt="" srcset=""
+                                            style="width:25px;position: absolute;top: 15px;right: 10px;cursor:pointer"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="login_button">
+                            <button mat-raised-button class="login_btn" type="submit">Login</button>
+                        </div>
+                    </form>
+                    <div class="login_button mt-4" style="text-align: center;">
+                        <button mat-raised-button class="login_btn" style="width: fit-content;background: #0000 !important;color: red !important;padding: 0;" (click)="gotoregister()">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="login_container" *ngIf="!signin">
+    <div class="row login_pos">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="login_panel">
+                <div class="login_details" style="background:seashell">
+                    <div class="login_header">SignUp</div>
+                    <form [formGroup]="singupForm" (ngSubmit)="submitsignup()">
+                        <div>
+                            <div class="login_username ">
+                                <div class="themeinput">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Username" class="form-control" (keydown.space)="$event.preventDefault()" formControlName="signuserName" required>
+                                        <mat-error>{{getUserNameErrorMessage()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="login_userrole ">
+                                <div class="themeinput">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Role</mat-label> 
+                                        <mat-select> 
+                                          <mat-option value="Admin">Admin </mat-option> 
+                                          <mat-option value="User">User</mat-option> 
+                                        </mat-select> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="login_password mt-3">
+                                <div class="themeinput" style="position:relative">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput type="password" placeholder="Password" [type]='passwd_type'
+                                            #password class="form-control" formControlName="signpassword" required (keydown.space)="$event.preventDefault()" />
+                                        <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+                                    </mat-form-field>
+                                    <span class="pwd_icon"> <img style="width: 15px;" (click)="password_view(password,$event)"
+                                            [src]="passwd_img" alt="" srcset=""
+                                            style="width:25px;position: absolute;top: 15px;right: 10px;cursor:pointer"></span>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="login_button">
+                            <button mat-raised-button class="login_btn" type="submit">Register</button>
+                        </div>
+                    </form>
+                    <div class="login_button mt-4" style="text-align: center;">
+                        <button mat-raised-button class="login_btn" style="width: fit-content;background: #0000 !important;color: red !important;padding: 0;" (click)="backtologin()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
