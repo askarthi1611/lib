@@ -101,6 +101,16 @@ export class SidebarComponent {
 
 
 
+    $( window ).on( "load", function() {
+      let resize_width:any=$( window ).width();
+      if (resize_width < 991) {
+        $(".sidebar").addClass("sidebar-close");
+        $("body").addClass("fullcontent");
+      } else {
+        $(".sidebar").removeClass("sidebar-close");
+        $("body").removeClass("fullcontent");
+      }
+    } );
     $( window ).on( "resize", function() {
       let resize_width:any=$( window ).width();
       if (resize_width < 991) {

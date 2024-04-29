@@ -45,14 +45,14 @@ input.mat-input-element {
 }
 
 .ui-table-wrapper table thead th {
-    background-color: #86d3a9;
+    background-color: #455A64;
     position: sticky;
     top: 0;
-    color: #030303;
+    color: #FFFDE7;
 }
 
 .ui-table-wrapper table tbody tr:nth-child(even) td {
-    background: #bee4cf !important;
+    background: #CFD8DC !important;
 }
 
 .ui-table-wrapper table .ui-table-tbody tr:nth-child(odd) td {
@@ -117,22 +117,10 @@ p-cellEditor input {
     min-width: fit-content !important;
 }
 
-.ui-table-wrapper table thead th {
-    background-color: #86d3a9;
-    position: sticky;
-    top: 0;
-    color: #030303;
+
+.pi , button{
+    cursor: pointer !important;
 }
-
-.ui-table-wrapper table tbody tr:nth-child(even) td {
-    background: #bee4cf !important;
-}
-
-.ui-table-wrapper table .ui-table-tbody tr:nth-child(odd) td {
-    background: #fff !important;
-
-}
-
 .sidebar {
     width: 240px;
     height: 100%;
@@ -160,7 +148,13 @@ main.center-content {
 
 
 
-
+.themeinput .form-control:active{
+    background: #f5f5f5;
+}
+.themeinput .form-control{
+    border-radius: 6px;
+    height: 40px;
+}
 
 @media screen and (max-width:991px) {
     main.center-content {

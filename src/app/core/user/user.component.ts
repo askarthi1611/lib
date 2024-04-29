@@ -6,15 +6,37 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  data:any=[
-    {"username":"Karthikeyan","dob":"16/11/1999","role":"Admin"},
-    {"username":"Hari","dob":"16/09/1995","role":"User"},
-    {"username":"Ram","dob":"29/09/2001","role":"User"},
-    {"username":"Kumar" ,"dob":"30/12/1868","role":"Admin"},
-    {"username":"Walter","dob":"04/11/1988","role":"User"},
-    {"username":"Revanth","dob":"25/05/1995","role":"User"},
-  ]
+  data:any=[{
+        "address": "Chennai",
+        "activeTransactions": [],
+        "prevTransactions": [],
+        "isAdmin": true,
+        "_id": "662fc582b1d1910a28a319ce",
+        "userFullName": "Karthi",
+        "dob": "20-03-2000",
+        "gender": "Male",
+        "mobileNumber": 7708550202,
+        "email": "askarthi@gmail.com",
+        "password": "$2b$10$tHksjbKrYT23DjSsUTbRO.qwlJTBBin628CeyfIGoT/WaExPh6t1e",
+        "createdAt": "2024-04-29T16:06:26.730Z",
+        "updatedAt": "2024-04-29T16:06:26.730Z",
+        "__v": 0
+    }]
   search(e:any){
     return e.value
   }
+  editvisible: boolean = false;
+deletevisible: boolean = false;
+addvisible: boolean = false;
+
+EditDialog(item:any) {
+    this.editvisible = true;
+}
+DeleteDialog(item:any) {
+    this.deletevisible = true;
+}
+AddDialog(item:any) {
+    this.addvisible = true;
+}
+
 }

@@ -31,5 +31,18 @@ data:any=[
 search(e:any){
   return e.value
 }
+editvisible: boolean = false;
+deletevisible: boolean = false;
+addvisible: boolean = false;
+
+EditDialog(item:any) {
+    this.editvisible = true;
+}
+DeleteDialog(item:any) {
+    this.deletevisible = true;
+}
+AddDialog(item:any) {
+    this.addvisible = true;
+}
 
 }
