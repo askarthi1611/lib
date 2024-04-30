@@ -47,7 +47,7 @@ console.log(response);
       if (response.role=='admin') {
         this.router.navigate(['/admin'])
       } else {
-        this.router.navigate(['/user'])
+        this.router.navigate(['/userdashboard'])
       }
     } catch (error) {
       // Handle login error

@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { TransComponent } from './trans/trans.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { BorrowComponent } from './borrow/borrow.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'userdashboard',
     component: UserdashboardComponent,
+      },
+      {
+        path: 'borrow',
+    component: BorrowComponent,
       },
     ]
   }

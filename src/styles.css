@@ -73,6 +73,7 @@ p-cellEditor input {
 
 .main-container {
     overflow: auto;
+    height: 100%;
     padding: 15px;
 }
 

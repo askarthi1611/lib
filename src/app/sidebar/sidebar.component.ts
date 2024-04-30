@@ -52,7 +52,7 @@ export class SidebarComponent {
     },
     {
       link_name: "Borrow",
-      link: "userdashboard", type: 'user',
+      link: "borrow", type: 'user',
 
       icon: "../assets/images/dashboard.png",
       sub_menu: []
@@ -67,7 +67,6 @@ export class SidebarComponent {
     {
       link_name: "User List",
       link: "user", type: 'admin',
-
       icon: "../assets/images/approval.png",
       sub_menu: []
     },

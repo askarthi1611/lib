@@ -67,9 +67,7 @@ export class AdminComponent {
     }
   update_id:any=''
   editBook() {
-
-    console.log(this.update_id, this.EditbookData);
-    
+    console.log(this.update_id, this.EditbookData);    
     this.service.updateBook(this.update_id, this.EditbookData).subscribe(
       () => {
         console.log('book data updated successfully.');
