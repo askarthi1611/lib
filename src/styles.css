@@ -130,6 +130,7 @@ p-cellEditor input {
 
 main.center-content {
     margin-left: 240px;
+    padding-top: 30px;
 }
 
 .btn_action {
@@ -143,8 +144,29 @@ main.center-content {
     color: #000;
     font-size: 18px;
 }
+.ptableheader{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+}
+.p-datatable .p-datatable-header .p-input-icon-left input[type="search"] {
+    height: 37px;
+    border-radius: 6px;
+    padding-left: 35px;
+}
 
-
+header.header {
+    margin-left: 250px;
+    position: fixed;
+    background: #05293a;
+    padding: 10px;
+    width: 100%;
+    z-index: 1000020 !important;
+}
+.fullcontent header.header {
+    margin-left: 60px !important;
+}
 
 
 
@@ -155,7 +177,9 @@ main.center-content {
     border-radius: 6px;
     height: 40px;
 }
-
+.themeinput label{
+    margin-bottom: 5px;
+}
 @media screen and (max-width:991px) {
     main.center-content {
         margin-left: 60px;

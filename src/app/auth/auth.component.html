@@ -1,6 +1,6 @@
 <div *ngIf="isLoading | async" class="overlay">
     <img src="../../../assets/images/loader.gif" alt="" class="spinner">
- </div>
+</div>
 <div class="login_container" *ngIf="signin">
     <div class="row login_pos">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -13,8 +13,10 @@
                                 <div class="themeinput">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Username</mat-label>
-                                        <input matInput placeholder="Username" class="form-control" (keydown.space)="$event.preventDefault()" formControlName="userName" required>
-                                        <mat-error>{{getUserNameErrorMessage()}}</mat-error>
+                                        <input matInput placeholder="Username" class="form-control"
+                                            (keydown.space)="$event.preventDefault()" formControlName="userFullName"
+                                            required>
+                                        <mat-error>{{getuserFullNameErrorMessage()}}</mat-error>
                                     </mat-form-field>
 
                                 </div>
@@ -24,12 +26,12 @@
                                 <div class="themeinput" style="position:relative">
                                     <mat-form-field appearance="outline">
                                         <mat-label>Password</mat-label>
-                                        <input #loginPassword matInput type="password" placeholder="Password" [type]='passwd_type'
-                                            class="form-control" formControlName="password" required (keydown.space)="$event.preventDefault()" />
-                                        <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+                                        <input #password matInput type="password" placeholder="Password"
+                                            [type]='passwd_type' class="form-control" formControlName="password"
+                                            required />
                                     </mat-form-field>
-                                    <span class="pwd_icon"> <img style="width: 15px;" (click)="password_view(loginPassword,$event)"
-                                            [src]="passwd_img" alt="" srcset=""
+                                    <span class="pwd_icon"> <img style="width: 15px;"
+                                            (click)="password_view(password,$event)" [src]="passwd_img" alt="" srcset=""
                                             style="width:25px;position: absolute;top: 15px;right: 10px;cursor:pointer"></span>
                                 </div>
                             </div>
@@ -41,7 +43,8 @@
                         </div>
                     </form>
                     <div class="login_button mt-4" style="text-align: center;">
-                        <button mat-raised-button class="login_btn" style="width: fit-content;background: #0000 !important;color: red !important;padding: 0;" (click)="gotoregister()">Register</button>
+                        <button mat-raised-button class="login_btn"
+                            style="width: fit-content;background: #0000 !important;color: red !important;padding: 0;">Register</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +53,7 @@
 </div>
 
 
-<div class="login_container" *ngIf="!signin">
+<!-- <div class="login_container" *ngIf="!signin">
     <div class="row login_pos">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <div class="login_panel">
@@ -106,4 +109,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

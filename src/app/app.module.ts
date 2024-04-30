@@ -19,6 +19,9 @@ import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,11 +36,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,MatSelectModule ,TableModule,DialogModule,ConfirmDialogModule,
-    DropdownModule,
+    DropdownModule,HttpClientModule,
     ButtonModule,
     MatInputModule, FormsModule, ReactiveFormsModule,
     MatFormFieldModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

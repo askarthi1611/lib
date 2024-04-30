@@ -8,45 +8,66 @@ import * as $ from 'jquery';
 })
 export class SidebarComponent {
   $: any;
-   mouseover(){
-     if ($(".sidebar").hasClass('sidebar-close')) { 
+  mouseover() {
+    if ($(".sidebar").hasClass('sidebar-close')) {
       $(".nav-links").width(250)
     }
   }
-  mouseleave(){
-    if ($(".sidebar").hasClass('sidebar-close')) { 
+  mouseleave() {
+    if ($(".sidebar").hasClass('sidebar-close')) {
       $(".nav-links").width(60)
     }
-   }
+  }
+  isAdmin: any = true;
+  role: any = ''
+  getCurrentUser() {
+    console.log('sidebar session get');
+    const currentUserString: any = sessionStorage.getItem('currentUser');
+    let user = currentUserString ? JSON.parse(currentUserString) : null
+    this.role = user.role
+    return user;
+  }
 
 
-  
+
+
 
   openSidebar: any = true;
-   // openSidebar: boolean = true;
-   
+  // openSidebar: boolean = true;
+
   menuSidebar = [
     {
       link_name: "Admin Dashboard",
       link: "admin",
+      type: 'admin',
       icon: "../assets/images/masters.png",
       sub_menu: []
     },
     {
       link_name: "User Dashboard",
-      link: "userdashboard",
+      link: "userdashboard", type: 'user',
+
+      icon: "../assets/images/dashboard.png",
+      sub_menu: []
+    },
+    {
+      link_name: "Borrow",
+      link: "userdashboard", type: 'user',
+
       icon: "../assets/images/dashboard.png",
       sub_menu: []
     },
     {
       link_name: "Transaction",
-      link: "transaction",
+      link: "transaction", type: 'admin',
+
       icon: "../assets/images/status.png",
       sub_menu: []
     },
     {
       link_name: "User List",
-      link: "user",
+      link: "user", type: 'admin',
+
       icon: "../assets/images/approval.png",
       sub_menu: []
     },
@@ -99,10 +120,10 @@ export class SidebarComponent {
   ]
   ngOnInit() {
 
+    this.getCurrentUser()
 
-
-    $( window ).on( "load", function() {
-      let resize_width:any=$( window ).width();
+    $(window).on("load", function () {
+      let resize_width: any = $(window).width();
       if (resize_width < 991) {
         $(".sidebar").addClass("sidebar-close");
         $("body").addClass("fullcontent");
@@ -110,9 +131,9 @@ export class SidebarComponent {
         $(".sidebar").removeClass("sidebar-close");
         $("body").removeClass("fullcontent");
       }
-    } );
-    $( window ).on( "resize", function() {
-      let resize_width:any=$( window ).width();
+    });
+    $(window).on("resize", function () {
+      let resize_width: any = $(window).width();
       if (resize_width < 991) {
         $(".sidebar").addClass("sidebar-close");
         $("body").addClass("fullcontent");
@@ -120,7 +141,7 @@ export class SidebarComponent {
         $(".sidebar").removeClass("sidebar-close");
         $("body").removeClass("fullcontent");
       }
-    } );
+    });
   }
 
   showSubmenu(itemEl: HTMLElement) {
@@ -128,7 +149,7 @@ export class SidebarComponent {
   }
 
 
-  
+
   changemaincon_short = () => {
     $(".headerbar_class").removeClass("headerbar_full");
     $(".headerbar_class").addClass("headerbar");

@@ -4,9 +4,9 @@
       <div class="logo_small"><img src="../assets/images/abhyudaya_logo_small.png"></div>
     </div>
     <ul class="nav-links" id="nav-links">
-      <li *ngFor="let item of menuSidebar" #itemEl (mouseleave)="mouseleave()" (mouseover)="mouseover()">
-        <div  class="dropdown-title">
-          <a routerLinkActive="active" [routerLink]="[item.link]">
+      <li *ngFor="let item of menuSidebar"  routerLinkActive="active" #itemEl (mouseleave)="mouseleave()" (mouseover)="mouseover()">
+        <div *ngIf="item.type==role" class="dropdown-title">
+          <a  [routerLink]="[item.link]">
                         <img src="{{item.icon}}">
             <span class="link_name">{{item.link_name }}</span>
           </a>

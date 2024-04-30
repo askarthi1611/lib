@@ -1,137 +1,197 @@
 <div class="main-container">
-    <p-table class="ui-table-wrapper" [value]="data" dataKey="empcode" editMode="row" dataKey="User_id" #dt1 [rows]="5"
-        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 20]" [paginator]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="['username','role','dob']">
-        <ng-template pTemplate="caption">
-            <div class="flex">
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="search" (input)="dt1.filterGlobal(search($event.target), 'contains')"
-                        placeholder="Search keyword" />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 40px;">#</th>
-                <th style="min-width: 100px;">User Name</th>
-                <th style="width: 180px;">Gender</th>
-                <th style="width: 180px;">Email</th>
-                <th style="width: 180px;">Mobile No.</th>
-                <th style="width: 180px;">Address</th>
-                <th style="width: 180px;">Role</th>
-                <th style="width: 180px;">DOB</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item let-ri="rowIndex">
-            <tr>
-                <td>{{ri+1}}</td>
-                <td>{{item.userFullName}}</td>
-                <td>{{item.gender}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.mobileNumber}}</td>
-                <td>{{item.address}}</td>
-                <td>{{item.role?'Admin':'User'}}</td>
-                <td>{{item.dob}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+  <p-table class="ui-table-wrapper" [value]="data" dataKey="empcode" editMode="row" dataKey="User_id" #dt1 [rows]="5"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 20]" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['username','role','dob']">
+    <ng-template pTemplate="caption">
+      <div class="ptableheader">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="search" (input)="dt1.filterGlobal(search($event.target), 'contains')"
+              placeholder="Search keyword" />
+          </span>
+        </div>
+        <button class="btn btn-primary" (click)="AddDialog()">Create</button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 40px;">#</th>
+        <th style="min-width: 100px;">User Name</th>
+        <th style="width: 180px;">Gender</th>
+        <th style="width: 180px;">Email</th>
+        <th style="width: 180px;">Mobile No.</th>
+        <th style="width: 180px;">Address</th>
+        <th style="width: 180px;">Role</th>
+        <th style="width: 180px;">DOB</th>
+        <th style="width: 180px;">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-ri="rowIndex">
+      <tr>
+        <td>{{ri+1}}</td>
+        <td>{{item.userFullName}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.mobileNumber}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.role}}</td>
+        <td>{{item.dob}}</td>
+        <td>
+          <div class="btn_action">
+            <i class="pi pi-pencil" (click)="EditDialog(item)"></i>
+            <i (click)="deleteUser(item._id)" class="pi pi-trash"></i>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
-
-
-
-
-<p-dialog
-  header="Create User"
-  [(visible)]="addvisible"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="row">
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User ID</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User Title</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User Author</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12">
+<p-dialog header="Create User" [(visible)]="addvisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false">
+  <div class="container">
+    <form (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-12 col-md-6">
-            <button class="btn btn-succes" (click)="addvisible=false">Close</button>
+          <div class="form-group themeinput">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" [(ngModel)]="userData.userFullName" class="form-control"
+              required>
           </div>
-          <div class="col-12 col-md-6">
-            <button class="btn btn-succes">Save</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" [(ngModel)]="userData.password" class="form-control"
+              required>
           </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="username">DOB:</label>
+            <input type="text" id="dob" name="dob" [(ngModel)]="userData.dob" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" [(ngModel)]="userData.gender" class="form-control" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="username">Mobile:</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" [(ngModel)]="userData.mobileNumber"
+              class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="userData.email" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="username">Address:</label>
+            <textarea id="address" name="address" style="min-height:60px;" [(ngModel)]="userData.address"
+              class="form-control" required cols="30" rows="10"></textarea>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="role">Role:</label>
+            <select id="role" name="role" [(ngModel)]="userData.role" class="form-control" required>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </div>
       </div>
-    </div>
+      <button type="submit" style="margin-top: 15px;float:right" class="btn btn-primary">Create</button>
+    </form>
   </div>
 </p-dialog>
-<p-dialog
-  header="Edit User"
-  [(visible)]="editvisible"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="row">
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User ID</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User Title</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>User Author</label>
-        <input type="text" class="form-control" />
-      </div>
-    </div>
-    <div class="col-12">
+<p-dialog header="Edit User" [(visible)]="editvisible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false">
+  <div class="container">
+    <form (ngSubmit)="onUpdateUser()">
       <div class="row">
         <div class="col-12 col-md-6">
-            <button class="btn btn-succes" (click)="editvisible=false">Close</button>
+          <div class="form-group themeinput">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" [(ngModel)]="EdituserData.userFullName"
+              class="form-control" required>
           </div>
-          <div class="col-12 col-md-6">
-            <button class="btn btn-succes">Update</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="role">Role:</label>
+            <select id="role" name="role" disabled [(ngModel)]="EdituserData.role" class="form-control" required>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="username">DOB:</label>
+            <input type="text" id="dob" name="dob" [(ngModel)]="EdituserData.dob" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" [(ngModel)]="EdituserData.gender" class="form-control" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="username">Mobile:</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" [(ngModel)]="EdituserData.mobileNumber"
+              class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group themeinput">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="EdituserData.email" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group themeinput">
+            <label for="username">Address:</label>
+            <textarea id="address" name="address" style="min-height:60px;" [(ngModel)]="EdituserData.address"
+              class="form-control" required cols="30" rows="10"></textarea>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="row mt-3">
+        <div class="col-6 col-md-6">
+          <button class="btn btn-warning" style="float:right;" (click)="editvisible=false">Close</button>
+        </div>
+        <div class="col-6 col-md-6">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </form>
   </div>
 </p-dialog>
-<p-dialog
-  header="Delete User"
-  [(visible)]="deletevisible"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
+<!-- <p-dialog header="Delete User" style="min-width: 300px" [(visible)]="deletevisible" [modal]="true" [style]="{ width: '20vw' }"
+  [draggable]="false" [resizable]="false">
   <div class="row">
-    <div class="col-12 col-md-6">
-      <button class="btn btn-succes" (click)="deletevisible=false">Close</button>
+    <div class="col-6 col-md-6">
+      <button class="btn btn-warning" (click)="deletevisible=false">Close</button>
     </div>
-    <div class="col-12 col-md-6">
-      <button class="btn btn-succes">Delete</button>
+    <div class="col-6 col-md-6">
+      <button class="btn btn-primary" (click)="deletedata()">Delete</button>
     </div>
   </div>
-</p-dialog>
+</p-dialog> -->

@@ -11,19 +11,22 @@
     [rowsPerPageOptions]="[5, 10, 20]"
     [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [globalFilterFields]="['book.title', 'book.author']"
+    [globalFilterFields]="['bookName', 'author', 'bookCountAvailable']"
   >
     <ng-template pTemplate="caption">
-      <div class="flex">
-        <span class="p-input-icon-left ml-auto">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="search"
-            (input)="dt1.filterGlobal(search($event.target), 'contains')"
-            placeholder="Search keyword"
-          />
-        </span>
+      <div class="ptableheader">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="search"
+              (input)="dt1.filterGlobal(search($event.target), 'contains')"
+              placeholder="Search keyword"
+            />
+          </span>
+        </div>
+        <button class="btn btn-primary" (click)="AddDialog()">Create</button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -31,6 +34,7 @@
         <th style="width: 40px">#</th>
         <th style="min-width: 100px">Book Name</th>
         <th style="width: 220px">Author</th>
+        <th style="width: 220px">Count Available</th>
         <th
           style="
             width: 120px;
@@ -47,12 +51,13 @@
     <ng-template pTemplate="body" let-item let-ri="rowIndex">
       <tr>
         <td>{{ ri + 1 }}</td>
-        <td>{{ item.book.title }}</td>
-        <td>{{ item.book.author }}</td>
+        <td>{{ item.bookName }}</td>
+        <td>{{ item.author }}</td>
+        <td>{{ item.bookCountAvailable }}</td>
         <td>
           <div class="btn_action">
             <i class="pi pi-pencil" (click)="EditDialog(item)"></i>
-            <i (click)="DeleteDialog(item)" class="pi pi-trash"></i>
+            <i (click)="deletebook(item._id)" class="pi pi-trash"></i>
           </div>
         </td>
       </tr>
@@ -67,36 +72,58 @@
   [draggable]="false"
   [resizable]="false"
 >
-  <div class="row">
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book ID</label>
-        <input type="text" class="form-control" />
+  <form (ngSubmit)="addBook()">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="book.bookName"
+            class="form-control"
+            required
+          />
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book Title</label>
-        <input type="text" class="form-control" />
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            [(ngModel)]="book.author"
+            class="form-control"
+            required
+          />
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book Author</label>
-        <input type="text" class="form-control" />
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="countAvailable">Count Available:</label>
+          <input
+            type="number"
+            id="countAvailable"
+            name="countAvailable"
+            [(ngModel)]="book.bookCountAvailable"
+            class="form-control"
+            max="1000"
+            min="0"
+            required
+          />
+        </div>
       </div>
+      <button
+        class="btn btn-primary"
+        style="float: right; margin-top: 15px"
+        type="submit"
+      >
+        Add Book
+      </button>
     </div>
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12 col-md-6">
-            <button class="btn btn-succes" (click)="addvisible=false">Close</button>
-          </div>
-          <div class="col-12 col-md-6">
-            <button class="btn btn-succes">Save</button>
-          </div>
-      </div>
-    </div>
-  </div>
+  </form>
 </p-dialog>
 <p-dialog
   header="Edit Book"
@@ -106,51 +133,56 @@
   [draggable]="false"
   [resizable]="false"
 >
-  <div class="row">
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book ID</label>
-        <input type="text" class="form-control" />
+  <form (ngSubmit)="editBook()">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="EditbookData.bookName"
+            class="form-control"
+            required
+          />
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book Title</label>
-        <input type="text" class="form-control" />
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            [(ngModel)]="EditbookData.author"
+            class="form-control"
+            required
+          />
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mt-3">
-      <div class="themeinput">
-        <label>Book Author</label>
-        <input type="text" class="form-control" />
+      <div class="col-12 col-md-6">
+        <div class="themeinput">
+          <label for="countAvailable">Count Available:</label>
+          <input
+            type="number"
+            id="countAvailable"
+            name="countAvailable"
+            [(ngModel)]="EditbookData.bookCountAvailable"
+            class="form-control"
+            max="1000"
+            min="0"
+            required
+          />
+        </div>
       </div>
+      <button
+        class="btn btn-primary"
+        style="float: right; margin-top: 15px"
+        type="submit"
+      >
+        Add Book
+      </button>
     </div>
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12 col-md-6">
-            <button class="btn btn-succes" (click)="editvisible=false">Close</button>
-          </div>
-          <div class="col-12 col-md-6">
-            <button class="btn btn-succes">Update</button>
-          </div>
-      </div>
-    </div>
-  </div>
-</p-dialog>
-<p-dialog
-  header="Delete Book"
-  [(visible)]="deletevisible"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="row">
-    <div class="col-12 col-md-6">
-      <button class="btn btn-succes" (click)="deletevisible=false">Close</button>
-    </div>
-    <div class="col-12 col-md-6">
-      <button class="btn btn-succes">Delete</button>
-    </div>
-  </div>
+  </form>
 </p-dialog>
