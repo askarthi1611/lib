@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  constructor(public injector: Injector,private renderer: Renderer2,private service:AuthService,private router: Router) {
+  constructor(public injector: Injector,private renderer: Renderer2,private service:AuthService,private router: Router,private toastr: ToastrService) {
     this.createLoginForm()
    
    }
@@ -88,8 +88,58 @@ console.log(response);
     });
   }
 
-
- 
+  createsingupForm() {
+    this.singupForm = this.fb1.group({
+      userName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      password: ['', [Validators.required,Validators.minLength(4)]],
+      conformpassword: ['', [Validators.required,Validators.minLength(4)]],
+    });
+  }
+  async submitsignup() {
+    if (this.singupForm.invalid) {
+      // this.toastr.success('success');
+      return;
+    } else {
+      try {} catch (error: any) {
+        console.error(error);
+        // this.toastr.error(error);
+      }
+    }
+  }
+  userData: any = {
+    userFullName: '',
+    role: '',
+    dob: '',
+    gender: '',
+    mobileNumber: '',
+    email: '',
+    address: ''
+  };
+  onRegister(){
+    console.log(this.userData);
+      
+    this.service.registerUser(this.userData).subscribe(
+      (response) => {
+      console.log('User registered successfully:', response);
+      this.toastr.success('Success!', 'User registered successfully!');
+    },
+    (error) => {
+      console.error('Error registering user:', error);
+      this.toastr.error('Error !!!', 'Error registering user');
+      // Add any error handling logic here
+    }
+    );
+  
+  }
+  gotoregister(){
+    this.signin=false;
+    setTimeout(() => {
+      this.createsingupForm();
+    }, 2000);
+  }
+    backtologin(){
+    this.signin=true;
+  }
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'login_body');

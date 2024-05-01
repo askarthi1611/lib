@@ -73,8 +73,12 @@ p-cellEditor input {
 
 .main-container {
     overflow: auto;
+    margin-top: 28px;
     height: 100%;
     padding: 15px;
+}
+.toast-container .ngx-toastr{
+    margin-top: 50px !important;
 }
 
 .ui-dropdown-panel .ui-dropdown-list {
@@ -162,13 +166,17 @@ header.header {
     position: fixed;
     background: #05293a;
     padding: 10px;
-    width: 100%;
+    width: calc(100vw - 250px);
     z-index: 1000020 !important;
 }
 .fullcontent header.header {
     margin-left: 60px !important;
+    width: calc(100vw - 60px) !important;
 }
-
+.logo_small img{
+    mix-blend-mode: multiply;
+  filter: contrast(1);
+}
 
 
 .themeinput .form-control:active{

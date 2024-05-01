@@ -70,6 +70,18 @@ export class SidebarComponent {
       icon: "../assets/images/approval.png",
       sub_menu: []
     },
+    {
+      link_name: "Profile",
+      link: "profile", type: 'admin',
+      icon: "../assets/images/approval.png",
+      sub_menu: []
+    },
+    {
+      link_name: "Profile",
+      link: "profile", type: 'user',
+      icon: "../assets/images/approval.png",
+      sub_menu: []
+    },
     // {
     //   link_name: "Scan Document",
     //   link: "dms/scan",

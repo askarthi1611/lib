@@ -17,7 +17,6 @@
                 <th style="min-width: 100px;">Book Name</th>
                 <th style="width: 220px;">Author</th>
                 <th style="width: 220px;">Borrow date</th>
-                <th style="width: 220px;">Return date</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="groupheader" let-customer>
@@ -30,10 +29,9 @@
         <ng-template pTemplate="body" let-item let-ri="rowIndex">
             <tr>
                 <td>{{ri+1}}</td>
-                <td>{{item.book.title}}</td>
-                <td>{{item.book.author}}</td>
-                <td>{{item.borrow_date}}</td>
-                <td>{{item.return_date}}</td>
+                <td>{{item.bookName}}</td>
+                <td>{{item.author}}</td>
+                <td>{{item.borrowdate}}</td>
             </tr>
         </ng-template>
     </p-table>

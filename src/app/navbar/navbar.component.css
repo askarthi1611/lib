@@ -2,3 +2,13 @@
     font-size: 20px;
     color: antiquewhite;
 }
+.header_contain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+.logout_btn{
+    background: antiquewhite;
+    color: #030303;
+}

@@ -21,6 +21,7 @@ export class BorrowComponent {
     this.user = currentUserString ? JSON.parse(currentUserString) : null
     this.fetchbooks();
   }
+  borrowbooklist:any =[]
   fetchbooks(){
     this.service.getAllBooks().subscribe(
       (response: any) => {
@@ -28,7 +29,10 @@ export class BorrowComponent {
         // Assuming the API responds directly with an array of books
         this.data = response; // No need for response.books if the API already returns an array of books
         console.log('Fetched books:', this.data);
-
+        this.user.borrowBook.map((e:any,l:any)=>{
+          this.borrowbooklist.push(e._id)
+        })
+        console.log(this.borrowbooklist);
       },
       (error: any) => {
         console.error('Error fetching books:', error);
@@ -38,12 +42,17 @@ export class BorrowComponent {
   borrowbook(item:any){
     if (confirm('Are you sure you want to Borrow this Book?'+item.bookName)) {
       item.bookCountAvailable -= 1;
+      let date = new Date()
+      item.borrowdate = date.toLocaleDateString('en-GB')
       this.user.borrowBook.push(item)
+
       let bookborrow = {
         user:this.user,
         book:item
       }
       console.log(bookborrow);
+      sessionStorage.setItem('currentUser', JSON.stringify(this.user));
+
       this.service.updateBookUser(bookborrow).subscribe(
         (response: any) => {
           console.log(response);
@@ -55,6 +64,7 @@ export class BorrowComponent {
           console.error('Error fetching books:', error);
         }
       );
+      this.fetchbooks()
     }
   }
   

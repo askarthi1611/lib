@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { TransComponent } from './trans/trans.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 import { BorrowComponent } from './borrow/borrow.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'borrow',
     component: BorrowComponent,
+      },
+      {
+        path: 'profile',
+    component: ProfileComponent,
       },
     ]
   }

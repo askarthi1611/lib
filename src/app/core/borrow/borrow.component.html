@@ -55,7 +55,8 @@
           <td>{{ item.bookCountAvailable }}</td>
           <td>
             <div class="btn_action">
-                <div class="btn btn-primary" (click)="borrowbook(item)">Borrow</div>
+                <div *ngIf="!borrowbooklist.includes(item._id)" class="btn btn-primary" (click)="borrowbook(item)">Borrow</div>
+                <div *ngIf="borrowbooklist.includes(item._id)" class="btn btn-warning">Already Borrow</div>
             </div>
           </td>
         </tr>
