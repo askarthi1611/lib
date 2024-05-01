@@ -1,4 +1,4 @@
 export const environment = {
-    Url:"https://bynature.isolvedev.in/ByNatureMasters/"
+    Url:"https://ask-lib.onrender.com"
   };
   

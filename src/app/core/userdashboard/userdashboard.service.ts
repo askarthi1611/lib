@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserdashboardService {
-  private userapi = 'http://localhost:4000/api/users/getuser/'; // Update with your API URL
-  private BorrowBookUrl = 'http://localhost:4000/api/transactions/'; // Update with your API URL
+  private userapi = environment.Url+'/api/users/getuser/'; // Update with your API URL
+  private BorrowBookUrl = environment.Url+'/api/transactions/'; // Update with your API URL
 
   constructor(private http: HttpClient) {}
   

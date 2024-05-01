@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from 'src/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private UserApi = 'http://localhost:4000/api/users/'; // Replace with your actual API URL
-  private RegUrl = 'http://localhost:4000/api/auth/register'; // Replace with your actual API URL
+  private UserApi = environment.Url+'/api/users/'; // Replace with your actual API URL
+  private RegUrl = environment.Url+'/api/auth/register'; // Replace with your actual API URL
 
   constructor(private http: HttpClient) {}
 

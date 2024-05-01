@@ -161,6 +161,7 @@ margin: auto;
     color: #ffa726;
     font-size: 20px;
     cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7496%) hue-rotate(325deg) brightness(103%) contrast(99%) !important;
     transition: all 0.3s ease;
     padding: 10px 20px;
 }

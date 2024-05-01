@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:4000/api/books/'; // Update with your API URL
+  private apiUrl = environment.Url+'/api/books/'; // Update with your API URL
 
   constructor(private http: HttpClient) {}
   // Create a new book

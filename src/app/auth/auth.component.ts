@@ -120,8 +120,9 @@ console.log(response);
       
     this.service.registerUser(this.userData).subscribe(
       (response) => {
-      console.log('User registered successfully:', response);
-      this.toastr.success('Success!', 'User registered successfully!');
+        console.log('User registered successfully:', response);
+        this.toastr.success('Success!', 'User registered successfully!');
+        this.backtologin()
     },
     (error) => {
       console.error('Error registering user:', error);

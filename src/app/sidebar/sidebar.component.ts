@@ -47,14 +47,14 @@ export class SidebarComponent {
       link_name: "User Dashboard",
       link: "userdashboard", type: 'user',
 
-      icon: "../assets/images/dashboard.png",
+      icon: "../assets/images/folder_access.png",
       sub_menu: []
     },
     {
       link_name: "Borrow",
       link: "borrow", type: 'user',
 
-      icon: "../assets/images/dashboard.png",
+      icon: "../assets/images/workflow.png",
       sub_menu: []
     },
     {
@@ -73,13 +73,13 @@ export class SidebarComponent {
     {
       link_name: "Profile",
       link: "profile", type: 'admin',
-      icon: "../assets/images/approval.png",
+      icon: "../assets/images/profile.png",
       sub_menu: []
     },
     {
       link_name: "Profile",
       link: "profile", type: 'user',
-      icon: "../assets/images/approval.png",
+      icon: "../assets/images/profile.png",
       sub_menu: []
     },
     // {
@@ -133,16 +133,21 @@ export class SidebarComponent {
 
     this.getCurrentUser()
 
-    $(window).on("load", function () {
-      let resize_width: any = $(window).width();
-      if (resize_width < 991) {
+    function handleSidebar() {
+      let windowWidth:any = $(window).width();
+      if (windowWidth < 991) {
         $(".sidebar").addClass("sidebar-close");
         $("body").addClass("fullcontent");
       } else {
         $(".sidebar").removeClass("sidebar-close");
         $("body").removeClass("fullcontent");
       }
-    });
+    }
+  
+    // Call the function on page load
+    setTimeout(() => {
+      handleSidebar();
+    }, 200);
     $(window).on("resize", function () {
       let resize_width: any = $(window).width();
       if (resize_width < 991) {
