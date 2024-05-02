@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const currentUserString: any = sessionStorage.getItem('currentUser');
     let user = currentUserString ? JSON.parse(currentUserString) : null;
-    console.log(user);
+    // console.log(user);
     if (!user) {
       this.router.navigate(['/'])
     }

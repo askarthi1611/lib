@@ -1,6 +1,7 @@
 <div class="headerbar_class sidebar" [class.sidebar-close]="!openSidebar">
     <div class="logo-brand">
-      <div class="logo_small"><img src="/assets/images/sk.jpeg"></div>
+      <div class="logo_small">A.S.K</div>
+      <div class="sub_side"><span>Library Management</span></div>
     </div>
     <ul class="nav-links" id="nav-links">
       <li *ngFor="let item of menuSidebar"  routerLinkActive="active" #itemEl (mouseleave)="mouseleave()" (mouseover)="mouseover()">

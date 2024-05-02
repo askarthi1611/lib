@@ -27,17 +27,17 @@ export class ProfileComponent implements OnInit{
     address: ''
   };
     onUpdateUser() {
-    console.log(this.update_id, this.userData);
+    // console.log(this.update_id, this.userData);
     if (confirm('Are you sure you want to Update this user?\nNeed to Login again.')) {
 
     this.service.updateUser(this.update_id, this.userData).subscribe(
       () => {
-        console.log('User data updated successfully.');
+        // console.log('User data updated successfully.');
         this.router.navigate(['/admin'])
         this.toastr.success('Success!', 'User Updated successfully!');
       },
       (error) => {
-        console.error('Error updating user data:', error);
+        // console.error('Error updating user data:', error);
         this.toastr.error('Error !!!', 'Error Update user');
       }
     );}

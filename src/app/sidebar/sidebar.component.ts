@@ -21,7 +21,7 @@ export class SidebarComponent {
   isAdmin: any = true;
   role: any = ''
   getCurrentUser() {
-    console.log('sidebar session get');
+    // console.log('sidebar session get');
     const currentUserString: any = sessionStorage.getItem('currentUser');
     let user = currentUserString ? JSON.parse(currentUserString) : null
     this.role = user.role

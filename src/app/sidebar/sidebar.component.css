@@ -11,9 +11,11 @@
   }
 
   .logo-brand {
-    margin: 8px auto 8px auto;
-    width: 90%;
-    text-align: center;
+    /* margin: 8px auto 8px auto; */
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 10px;
 }
   
   .logo_big img {
@@ -25,16 +27,18 @@
 }
 
 .logo_small {
-width: 50px;
-margin: auto;
+  font-size: 26px;
+  color: #fff !important;
+  font-weight: 900;
+  border-bottom: 1px solid #75ab3e;
 }
 
   ul#nav-links {
-    padding-left: 10px;
+    padding-left: 10px !important;
   }
 
   .sidebar-close ul#nav-links {
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
   
   .sidebar.sidebar-close {
@@ -358,6 +362,9 @@ margin: auto;
   .sidebar.sidebar-close ~ .home-section {
     left: 60px;
     width: calc(100% - 60px);
+  }
+  .sub_side{
+    font-size: 14px;color: antiquewhite;letter-spacing: 5px;
   }
   
   @media (max-width: 420px) {

@@ -27,15 +27,15 @@ export class UserdashboardComponent {
     
     this.service.updateBookUser(bookreturn).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
         // Assuming the API responds directly with an array of user
         sessionStorage.setItem('currentUser', JSON.stringify(this.user));
         this.fetchpage()
-        console.log('Updated user:', this.data);
+        // console.log('Updated user:', this.data);
         
       },
       (error: any) => {
-        console.error('Error fetching user:', error);
+        // console.error('Error fetching user:', error);
       }
     ); 
   }
@@ -49,14 +49,14 @@ export class UserdashboardComponent {
   fetchpage(){
     this.service.getUser(this.user._id).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
         // Assuming the API responds directly with an array of user
         this.data = response.borrowBook; // No need for response.user if the API already returns an array of user
-        console.log('Fetched user:', this.data);
+        // console.log('Fetched user:', this.data);
 
       },
       (error: any) => {
-        console.error('Error fetching user:', error);
+        // console.error('Error fetching user:', error);
       }
     ); 
   }

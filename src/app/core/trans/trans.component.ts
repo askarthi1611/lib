@@ -19,7 +19,7 @@ export class TransComponent {
   fetchMembers() {
     this.service.getAllMembers().subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
         let newdata :any = [];
         response.map((e: any, l: any) => {
           if (e.borrowBook.length) {
@@ -29,13 +29,13 @@ export class TransComponent {
             newdata.push(...e.borrowBook);
           }
         });
-        console.log(newdata);
+        // console.log(newdata);
         // Assuming the API responds directly with an array of members
         this.data = newdata; // No need for response.members if the API already returns an array of members
-        console.log('Fetched members:', this.data,newdata);
+        // console.log('Fetched members:', this.data,newdata);
       },
       (error: any) => {
-        console.error('Error fetching members:', error);
+        // console.error('Error fetching members:', error);
       }
     );
   }

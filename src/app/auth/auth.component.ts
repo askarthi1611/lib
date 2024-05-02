@@ -35,13 +35,15 @@ export class AuthComponent implements OnInit {
         // Handle invalid form data
         return;
       }
-
+      this.isLoading=true
       const formData = this.loginForm.value;
       const response = await this.service.login(formData).toPromise();
-console.log(response);
+// console.log(response);
+setTimeout(() => {
+  this.isLoading=false
 
       // Handle response from the login service
-      console.log('Login successful:', response);
+      // console.log('Login successful:', response);
       // Redirect or show success message
       sessionStorage.setItem('currentUser', JSON.stringify(response));
       if (response.role=='admin') {
@@ -49,9 +51,10 @@ console.log(response);
       } else {
         this.router.navigate(['/userdashboard'])
       }
+}, 2000);
     } catch (error) {
       // Handle login error
-      console.error('Error logging in:', error);
+      // console.error('Error logging in:', error);
       // Show error message or handle error
     }
   }
@@ -101,7 +104,7 @@ console.log(response);
       return;
     } else {
       try {} catch (error: any) {
-        console.error(error);
+        // console.error(error);
         // this.toastr.error(error);
       }
     }
@@ -116,16 +119,16 @@ console.log(response);
     address: ''
   };
   onRegister(){
-    console.log(this.userData);
+    // console.log(this.userData);
       
     this.service.registerUser(this.userData).subscribe(
       (response) => {
-        console.log('User registered successfully:', response);
+        // console.log('User registered successfully:', response);
         this.toastr.success('Success!', 'User registered successfully!');
         this.backtologin()
     },
     (error) => {
-      console.error('Error registering user:', error);
+      // console.error('Error registering user:', error);
       this.toastr.error('Error !!!', 'Error registering user');
       // Add any error handling logic here
     }

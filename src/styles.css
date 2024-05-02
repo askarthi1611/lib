@@ -11,7 +11,9 @@ html,
 body {
     height: 100%;
 }
-
+ul{
+    padding-left: 0 !important;
+}
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -72,7 +74,7 @@ p-cellEditor input {
 }
 
 .main-container {
-    overflow: auto;
+    /* overflow: auto; */
     margin-top: 28px;
     height: 100%;
     padding: 15px;
@@ -134,7 +136,7 @@ p-cellEditor input {
 }
 
 main.center-content {
-    margin-left: 240px;
+    margin-left: 250px;
     padding-top: 30px;
 }
 
@@ -193,4 +195,48 @@ header.header {
     main.center-content {
         margin-left: 60px;
     }
+}
+.sidebar-close .logo-brand{
+    letter-spacing: normal !important;
+}
+.sidebar-close .logo_small{
+    font-size: 18px !important;
+}
+.sidebar-close .sub_side{
+    font-size: 10px !important;
+    letter-spacing: normal !important;
+}
+.p-datatable-wrapper {
+    max-height: calc(100vh - 400px);
+}
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #474bff;
+    -webkit-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+    transform-origin: 50% 40%;
+    animation: spinner-pl92zb 1s infinite linear;
+ }
+ 
+ @keyframes spinner-pl92zb {
+    100% {
+       transform: rotate(1turn);
+    }
+ }
+ .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ccc8;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+ }
+ span#currentTime {
+    color: beige;
+    font-size: 18px;
+    margin-right: 20px;
 }
