@@ -26,7 +26,7 @@
     <li>Clone the repository to your local machine:</li>
     <pre><code>git clone https://github.com/askarthi1611/lib.git</code></pre>
     <li>Navigate to the project directory:</li>
-    <pre><code>cd library-management-app</code></pre>
+    <pre><code>cd lib</code></pre>
     <li>Install dependencies:</li>
     <pre><code>npm install</code></pre>
   </ol>
