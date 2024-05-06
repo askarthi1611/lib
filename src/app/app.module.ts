@@ -31,8 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     SidebarComponent,
     NavbarComponent,
     AdminComponent,
-    UserComponent,
-    
+    UserComponent,    
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,MatSelectModule ,TableModule,DialogModule,ConfirmDialogModule,
