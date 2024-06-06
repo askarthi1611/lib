@@ -1,6 +1,7 @@
 <div *ngIf="isLoading" class="overlay">
   <div class="spinner"></div>
 </div>
+<marquee behavior="" direction="">Total {{data.length}} users use this web application ({{type.admin}} is Admin and {{type.user}} is User)</marquee>
 <div class="login_container" *ngIf="signin">
   <div class="row login_pos">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

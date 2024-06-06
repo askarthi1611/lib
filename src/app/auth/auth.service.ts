@@ -11,6 +11,7 @@ export class AuthService {
 
   private apiUrl = environment.Url+'/api/auth/signin'; // Update with your API URL
   private RegUrl = environment.Url+'/api/auth/register'; // Replace with your actual API URL
+  private UserApi = environment.Url+'/api/users/'; // Replace with your actual API URL
 
 
   constructor(private http: HttpClient) {}
@@ -38,5 +39,8 @@ export class AuthService {
     }
     // Return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
+  }
+  getAllMembers(): Observable<any> {
+    return this.http.get<any>(this.UserApi+'allmembers');
   }
 }

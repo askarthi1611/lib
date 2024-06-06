@@ -14,10 +14,14 @@ export class AuthComponent implements OnInit {
     this.createLoginForm()
    
    }
-
+   type:any ={
+    user:0,
+    admin:0
+  }
+data:any
   password_view(id:any,e:any) {    
     id.type = id.type=='password' ? "text" : "password";
-    e.srcElement.src = id.type=='password' ? "/assets/images/pwd_show.png" : "/assets/images/pwd_hide.png";
+    e.srcElement.src = id.type=='password' ? "/assets/images/eye.png" : "/assets/images/hidden.png";
   }
   
   public loginForm: any;
@@ -28,7 +32,7 @@ export class AuthComponent implements OnInit {
   fb1 = this.injector.get(FormBuilder)
   passwd_view: any = true;
   passwd_type: any = "password";
-  passwd_img: any = "/assets/images/pwd_hide.png"
+  passwd_img: any = "/assets/images/hidden.png"
   async submitLogin() {
     try {
       if (this.loginForm.invalid) {
@@ -51,7 +55,7 @@ setTimeout(() => {
       } else {
         this.router.navigate(['/userdashboard'])
       }
-}, 2000);
+}, 500);
     } catch (error) {
       // Handle login error
       // console.error('Error logging in:', error);
@@ -147,8 +151,45 @@ setTimeout(() => {
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'login_body');
+    this.fetchMembers()
   }
-  ngOnDestroy(): void {
+  fetchMembers() {
+    // Set loading to true at the start of the request
+    this.isLoading = true;
+  
+    this.service.getAllMembers().subscribe(
+      (response: any) => {
+        console.log(response);
+        
+        // Assuming the API responds directly with an array of members
+        this.data = response; 
+        console.log('Fetched members:', this.data);
+        
+        // Reset the type counts before processing
+        this.type = { user: 0, admin: 0 };
+  
+        // Process the fetched data
+        this.data.forEach((member:any) => {
+          console.log(member.role);
+          if (member.role === 'user') {
+            this.type.user++;
+          } else if (member.role === 'admin') {
+            this.type.admin++;
+          }
+        });
+  
+        console.log(this.type);
+        // Set loading to false after processing
+        this.isLoading = false;
+      },
+      (error: any) => {
+        console.error('Error fetching members:', error);
+        // Set loading to false in case of error
+        this.isLoading = false;
+      }
+    );
+  }
+    ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'login_body');
   }
 }
